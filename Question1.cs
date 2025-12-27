@@ -4,21 +4,18 @@ namespace MediSureClinic
 {
     public class PatientBill
     {
-        #region Fields
-        string billId;
-        decimal consultationFee;
-        decimal labCharges;
-        decimal medicineCharges;
-        #endregion
-        
+        #region Declarations and Validations
+        private string billId;
+        private decimal consultationFee;
+        private decimal labCharges;
+        private decimal medicineCharges;
 
-        #region Properties and Validations
         public string BillId
         {
-            get;
+            get { return billId; }
             set
             {
-                if (BillId == null)
+                if (!string.IsNullOrWhiteSpace(value))
                     billId = value;
                 else
                     Console.WriteLine("Bill Id cannot be null");
@@ -30,7 +27,7 @@ namespace MediSureClinic
 
         public decimal ConsultationFee
         {
-            get;
+            get { return consultationFee; }
             set
             {
                 if (value > 0)
@@ -42,7 +39,7 @@ namespace MediSureClinic
 
         public decimal LabCharges
         {
-            get => labCharges;
+            get { return labCharges; }
             set
             {
                 if (value >= 0)
@@ -54,7 +51,7 @@ namespace MediSureClinic
 
         public decimal MedicineCharges
         {
-            get => medicineCharges;
+            get { return medicineCharges; }
             set
             {
                 if (value >= 0)
@@ -64,12 +61,13 @@ namespace MediSureClinic
             }
         }
 
-        public decimal GrossAmount { get;set; }
-        public decimal DiscountAmount { get;set; }
-        public decimal FinalPayable { get;set; }
-        public decimal LastBill { get;set; }
-        public bool HasLastBill { get;set; }
+        public decimal GrossAmount { get; set; }
+        public decimal DiscountAmount { get; set; }
+        public decimal FinalPayable { get; set; }
+        public decimal LastBill { get; set; }
+        public bool HasLastBill { get; set; }
         #endregion
+
 
         #region Constructor
         public PatientBill(string billId, string patientName, bool hasInsurance, decimal consultationFee, decimal labCharges, decimal medicineCharges)
@@ -83,30 +81,27 @@ namespace MediSureClinic
         }
         #endregion
 
-        /// <summary>
-        /// Method for Calculation
-        /// </summary>
+
         public void Register()
         {
             GrossAmount = ConsultationFee + LabCharges + MedicineCharges;
 
-            if (HasInsurance) {DiscountAmount = GrossAmount * 0.10m;}
-            else {DiscountAmount = 0;}
+            if (HasInsurance)
+                DiscountAmount = GrossAmount * 0.10m;
+            else
+                DiscountAmount = 0;
 
             FinalPayable = GrossAmount - DiscountAmount;
 
             LastBill = FinalPayable;
             HasLastBill = true;
 
-            Console.WriteLine("\nBill Created Successfully.\n");
+            Console.WriteLine("\n Bill Created Successfully.\n");
             Console.WriteLine($"Gross Amount   : {GrossAmount}");
             Console.WriteLine($"Discount Amount: {DiscountAmount}");
             Console.WriteLine($"Final Payable  : {FinalPayable}\n");
         }
 
-        /// <summary>
-        /// Clear Method.
-        /// </summary>
         public void Clear()
         {
             LastBill = 0;
