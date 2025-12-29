@@ -5,13 +5,14 @@ namespace Question2;
 
 
 /// <summary>
-/// Class to calculate Sale Transactions
+/// Class to calculate Profit/Loss, View,  Sale Transactions.
 /// </summary>
 public class SaleTransaction
 {
     #region Declarations and validations
     private string InvoiceNo { get; set; }
-
+    
+    // Validator for InvoiceNo
     public string invoiceNo
     {
         set
@@ -19,12 +20,11 @@ public class SaleTransaction
             if (value != null) {InvoiceNo = value;}
         }
     }
-
-
     public string CustomerName { get; set; }
     public string ItemName { get; set; }
     private int Quantity { get; set; }
 
+    // Validator for Quantity
     public int quantity {set
         {
             if (value > 0) {Quantity = value;}
@@ -32,6 +32,7 @@ public class SaleTransaction
     }
     private decimal PurchaseAmount { get; set; }
 
+    // Validator for  PurchaseAmount
     public decimal purchaseAmount {
         set
         {
@@ -40,6 +41,7 @@ public class SaleTransaction
     }
     private decimal SellingAmount { get; set; }
 
+    // Validator for SellingAmount
     public decimal sellingAmount
     {
         set
@@ -72,7 +74,11 @@ public class SaleTransaction
     #endregion
 
 
-    #region Register
+    #region Register Method
+
+    /// <summary>
+    /// Method to Register the Invoice with the valid inputs.
+    /// </summary>
     public void Register()
     {
         if (InvoiceNo == null)
@@ -110,7 +116,9 @@ public class SaleTransaction
     #endregion
 
 
-    #region Recalculate
+    #region Recalculate MEthod
+
+    // Re-call the method Calculate()
     public static void Recalculate()
     {
         if (!HasLastTransaction)
@@ -127,6 +135,7 @@ public class SaleTransaction
 
 
     #region View MEthod
+    // Method to View the Last Transaction if exist.
     public static void View()
     {
         if (!HasLastTransaction)
@@ -142,6 +151,8 @@ public class SaleTransaction
 
 
     #region Calculations
+
+    // Calculate the variables and segment them in Profit, Loss or Break-even
     private void Calculate()
     {
         if (SellingAmount > PurchaseAmount)
@@ -166,11 +177,13 @@ public class SaleTransaction
 
 
     #region Print
+
+    // Method to Print the summary
     private void PrintSummary()
     {
         Console.WriteLine($"Status: {ProfitOrLossStatus}");
         Console.WriteLine($"Profit/Loss Amount: {Math.Round(ProfitOrLossAmount, 2)}");
-        Console.WriteLine($"Profit Margin (%): {Math.Round(ProfitMarginPercent, 2)}");
+        Console.WriteLine($"Profit Margin(%): {Math.Round(ProfitMarginPercent, 2)}");
         Console.WriteLine("------------------------------------------------------\n");
     }
     #endregion

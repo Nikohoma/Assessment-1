@@ -7,7 +7,7 @@ public class MainClass
     public static void Main()
     {
         
-    //     #region Question1
+    //     #region Question1 Menu Console
 
     //     // Static storage initialisation
 
@@ -17,6 +17,9 @@ public class MainClass
 
     //     #region Console Menu
     //     Console.WriteLine("Enter your choice: ");
+
+
+    //     //  Infinite While loop to keep the menu console running and exit only using the option.
 
     //     while (true)
     //     {
@@ -29,7 +32,7 @@ public class MainClass
 
     //         string choice = Console.ReadLine();
 
-
+    //         // Create Instance with all the inputs and store them in lastBill, and set hasLastBill to true.
     //         if (choice == "1")
     //         {
     //             Console.WriteLine("Enter Bill Id: ");
@@ -57,7 +60,7 @@ public class MainClass
     //         }
 
 
-
+    //         // Print the inputs if hasLastBill is not null
     //         else if (choice == "2")
     //         {
     //             if (!hasLastBill || lastBill == null)
@@ -77,7 +80,7 @@ public class MainClass
     //         }
 
 
-
+    //         // Clearing the lastBill and hasLastBill 
     //         else if (choice == "3")
     //         {
     //             lastBill = null;
@@ -86,15 +89,14 @@ public class MainClass
     //         }
 
 
-
+    //         // Exiting
     //         else if (choice == "4")
     //         {
     //             Console.WriteLine("Thank You, Application closed normally.");
     //             break;
     //         }
 
-
-
+    //         // Illegal input handling
     //         else
     //         {
     //             Console.WriteLine("Invalid option. Please try again.");
@@ -105,8 +107,9 @@ public class MainClass
     // #endregion
 
 
-        #region Question2 Menu
+        #region Question2 Menu Console
 
+        // Infinite While loop for the Menu Console, Can only exit the console with the option.
         while (true)
         {
             Console.WriteLine("================== QuickMart Traders ==================");
@@ -114,11 +117,12 @@ public class MainClass
             Console.WriteLine("2. View Last Transaction");
             Console.WriteLine("3. Calculate Profit/Loss (Recompute & Print)");
             Console.WriteLine("4. Exit");
-            Console.Write("Enter your option: \n]]");
+            Console.Write("Enter your option: \n");
 
             string choice = Console.ReadLine();
             Console.WriteLine();
 
+            // Inputs for Instance and calling Register()
             if (choice == "1")
             {
                 Console.Write("Enter Invoice No: ");
@@ -138,22 +142,26 @@ public class MainClass
                 transaction.Register();
             }
 
+            // Calling View Method to check if any transaction is available.
             else if (choice == "2")
             {
                 SaleTransaction.View();
             }
 
+            // Calling the Recalculate Method
             else if (choice == "3")
             {
                 SaleTransaction.Recalculate();
             }
 
+            // Exiting using break
             else if (choice == "4")
             {
                 Console.WriteLine("Thank You, Application closed normally.");
                 break;
             }
 
+            // Invalid option input handling
             else
             {
                 Console.WriteLine("Invalid option. Press only 1-4.");

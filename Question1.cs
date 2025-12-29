@@ -10,6 +10,7 @@ namespace MediSureClinic
         private decimal labCharges;
         private decimal medicineCharges;
 
+        // Validator for Bill Id
         public string BillId
         {
             get { return billId; }
@@ -25,6 +26,7 @@ namespace MediSureClinic
         public string PatientName { get; set; }
         public bool HasInsurance { get; set; }
 
+        // Validator for Consultation Fee
         public decimal ConsultationFee
         {
             get { return consultationFee; }
@@ -37,6 +39,7 @@ namespace MediSureClinic
             }
         }
 
+        // Validator for Lab charges
         public decimal LabCharges
         {
             get { return labCharges; }
@@ -49,6 +52,8 @@ namespace MediSureClinic
             }
         }
 
+
+        // Validator for Medicine Charges
         public decimal MedicineCharges
         {
             get { return medicineCharges; }
@@ -65,6 +70,9 @@ namespace MediSureClinic
         public decimal DiscountAmount { get; set; }
         public decimal FinalPayable { get; set; }
         public decimal LastBill { get; set; }
+
+        // private static decimal LastBill = 0;
+        // private static bool HasLastBill = false;
         public bool HasLastBill { get; set; }
         #endregion
 
@@ -81,7 +89,7 @@ namespace MediSureClinic
         }
         #endregion
 
-
+        // Method for Registering the inputs
         public void Register()
         {
             GrossAmount = ConsultationFee + LabCharges + MedicineCharges;
@@ -102,6 +110,8 @@ namespace MediSureClinic
             Console.WriteLine($"Final Payable  : {FinalPayable}\n");
         }
 
+
+        // Method to clear the Last bill.
         public void Clear()
         {
             LastBill = 0;
